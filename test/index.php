@@ -19,20 +19,26 @@ ini_set("display_errors", 1);
 -------------------------------------------------*/
 if(isset($_GET['debug'])){define('DEBUG',true);}
 else{define('DEBUG',false);}
+
 $response=array();
 define('MODX_API_MODE', true);
 require('../../../index.php');
+
 /** @var modX $modx */
 /** @var modResource $resource */
 /** @var modUser $user */
 /** @var socUser $socuser */
 /** @var modObject $obj */
-$resource = $modx->getObject('modResource',1);
-$response['modResource_pagetitle'] = $resource->get('pagetitle');
+$option = $modx->getOption('site_name');
+$response['$option'] = $option;
 $response['MODX_CORE_PATH'] = MODX_CORE_PATH;
-if (!$socUser = $modx->getService('socuser', 'socUser', MODX_CORE_PATH.'components/socuser/model/socUser/', $scriptProperties)) {
+
+print_r($response);
+exit(0);
+
+if (!$socUser = $modx->getService('socialsbs', 'SocialSBS', MODX_CORE_PATH.'components/socuser/model/socUser/', $scriptProperties)) {
     return 'Could not load socUser class!';
 }
-$socuser = $modx->newObject('socUser', array('organization' => 'Synergy'));
+$socuser = $modx->newObject('SocialSBS', array('job_title' => 'Synergy'));
 $response['socUser_organization'] = $socuser->get('organization');
 print_r($response);
