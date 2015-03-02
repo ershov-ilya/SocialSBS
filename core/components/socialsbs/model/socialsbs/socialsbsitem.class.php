@@ -1,7 +1,2 @@
 <?php
-
-/**
- * @package socialsbs
- */
-class SocialSBSItem extends xPDOSimpleObject {
-}
+class SocialSBSItem extends xPDOSimpleObject {}
