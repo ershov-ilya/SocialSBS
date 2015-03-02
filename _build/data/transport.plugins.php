@@ -3,8 +3,8 @@
 $plugins = array();
 
 $tmp = array(/*
-	'modExtra' => array(
-		'file' => 'modextra',
+	'SocialSBS' => array(
+		'file' => 'socialsbs',
 		'description' => '',
 		'events' => array(
 			'OnManagerPageInit' => array()
