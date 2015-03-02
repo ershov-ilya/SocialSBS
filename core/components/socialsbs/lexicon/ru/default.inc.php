@@ -8,6 +8,7 @@ $_lang['socialsbs_intro_msg'] = 'Вы можете выделять сразу �
 $_lang['socialsbs_items'] = 'Предметы';
 $_lang['socialsbs_item_id'] = 'Id';
 $_lang['socialsbs_item_name'] = 'Название';
+$_lang['socialsbs_item_job_title'] = 'Профессия';
 $_lang['socialsbs_item_description'] = 'Описание';
 $_lang['socialsbs_item_active'] = 'Активно';
 

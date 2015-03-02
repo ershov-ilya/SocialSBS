@@ -182,7 +182,7 @@ Ext.extend(SocialSBS.grid.Items, MODx.grid.Grid, {
 	},
 
 	getFields: function (config) {
-		return ['id', 'name', 'description', 'active', 'actions'];
+		return ['id', 'name', 'job_title', 'description', 'active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -192,11 +192,16 @@ Ext.extend(SocialSBS.grid.Items, MODx.grid.Grid, {
 			sortable: true,
 			width: 70
 		}, {
-			header: _('socialsbs_item_name'),
-			dataIndex: 'name',
-			sortable: true,
-			width: 200,
-		}, {
+            header: _('socialsbs_item_name'),
+            dataIndex: 'name',
+            sortable: true,
+            width: 200,
+        }, {
+            header: _('socialsbs_item_job_title'),
+            dataIndex: 'job_title',
+            sortable: true,
+            width: 200,
+        }, {
 			header: _('socialsbs_item_description'),
 			dataIndex: 'description',
 			sortable: false,
