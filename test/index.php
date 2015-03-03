@@ -27,7 +27,7 @@ require('../../../index.php');
 /** @var modX $modx */
 /** @var modResource $resource */
 /** @var modUser $user */
-/** @var socUser $socuser */
+/** @var SocialsbsUsers $socuser */
 /** @var modObject $obj */
 
 $pkg='socialsbs';
@@ -35,11 +35,19 @@ $class='SocialsbsUsers';
 $path = MODX_CORE_PATH.'components/socialsbs/model/';
 $prefix='modx_';
 
-$addpkg = $modx->addPackage($pkg, $path, $prefix);
+$response['addpkg'] = false;
+if($addpkg = $modx->addPackage($pkg, $path, $prefix)) $response['addpkg'] = true;
 var_dump($addpkg);
 
 // Создаём объект
-$obj = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
+$response['resource create'] = false;
+$socuser = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
+if($socuser) $response['resource create'] = true;
 
-$res = $obj->save();
-var_dump($res);
+
+$res = $socuser->save();
+$response['user id'] = $socuser->get('id');
+
+
+print "Response:\n";
+print_r($response);
