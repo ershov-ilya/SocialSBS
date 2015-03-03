@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="socialsbs" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="socialsbs"
-	   version="1.1">
+<model package="socialsbs" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    <object class="SocialsbsUsers" table="socialsbs_users" extends="xPDOSimpleObject">
+        <field key="company" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="jobtitle" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <aggregate alias="Users" class="modUser" local="id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+    <object class="Users" table="users" extends="xPDOSimpleObject">
+        <field key="username" dbtype="varchar" precision="100" phptype="string" null="false" default="" index="unique" />
+        <field key="password" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="cachepwd" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="class_key" dbtype="varchar" precision="100" phptype="string" null="false" default="modUser" index="index" />
+        <field key="active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="1" />
+        <field key="remote_key" dbtype="varchar" precision="255" phptype="string" null="true" index="index" />
+        <field key="remote_data" dbtype="text" phptype="string" null="true" />
+        <field key="hash_class" dbtype="varchar" precision="100" phptype="string" null="false" default="hashing.modPBKDF2" />
+        <field key="salt" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="primary_group" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" index="index" />
+        <field key="session_stale" dbtype="text" phptype="string" null="true" />
+        <field key="sudo" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
 
-	<object class="SocialSBSItem" table="socialsbs_items" extends="xPDOSimpleObject">
-        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-        <field key="job_title" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
-
-		<index alias="name" name="name" primary="false" unique="false" type="BTREE">
-			<column key="name" length="" collation="A" null="false"/>
-		</index>
-		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
-			<column key="active" length="" collation="A" null="false"/>
-		</index>
-	</object>
-
+        <index alias="username" name="username" primary="false" unique="true" type="BTREE" >
+            <column key="username" length="" collation="A" null="false" />
+        </index>
+        <index alias="class_key" name="class_key" primary="false" unique="false" type="BTREE" >
+            <column key="class_key" length="" collation="A" null="false" />
+        </index>
+        <index alias="remote_key" name="remote_key" primary="false" unique="false" type="BTREE" >
+            <column key="remote_key" length="" collation="A" null="true" />
+        </index>
+        <index alias="primary_group" name="primary_group" primary="false" unique="false" type="BTREE" >
+            <column key="primary_group" length="" collation="A" null="false" />
+        </index>
+        <composite alias="SocialsbsUsers" class="SocialsbsUsers" local="id" foreign="id" cardinality="one" owner="local" />
+    </object>
 </model>

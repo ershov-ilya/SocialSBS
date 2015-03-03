@@ -33,12 +33,30 @@ $option = $modx->getOption('site_name');
 $response['$option'] = $option;
 $response['MODX_CORE_PATH'] = MODX_CORE_PATH;
 
-print_r($response);
-exit(0);
-
-if (!$socUser = $modx->getService('socialsbs', 'SocialSBS', MODX_CORE_PATH.'components/socuser/model/socUser/', $scriptProperties)) {
-    return 'Could not load socUser class!';
+//print_r($response);
+//exit(0);
+$pkg='socialsbs';
+$class='SocialsbsUsers';
+if (!$service = $modx->getService($pkg, $class, MODX_CORE_PATH.'components/socialsbs/model/socialsbs/', array())) {
+//if (!$service = $modx->getService('SocialSBS')) {
+    die("Could not load $class class!");
 }
-$socuser = $modx->newObject('SocialSBS', array('job_title' => 'Synergy'));
-$response['socUser_organization'] = $socuser->get('organization');
-print_r($response);
+else{
+    print "Class $class loaded!\n";
+    //var_dump($service);
+}
+
+// Создаём объект
+try {
+    $obj = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
+}
+catch (Exception $e) {
+    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+}
+
+//$res = $socuser->save();
+var_dump($obj);
+
+//$socuser = $modx->newObject('SocialSBS', array('job_title' => 'Synergy'));
+//$response['socUser_organization'] = $socuser->get('organization');
+//print_r($response);
