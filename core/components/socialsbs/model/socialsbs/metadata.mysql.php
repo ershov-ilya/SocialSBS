@@ -3,6 +3,7 @@
 $xpdo_meta_map = array (
   'xPDOSimpleObject' => 
   array (
-    0 => 'SocialSBSItem',
+    0 => 'SocialsbsUsers',
+    1 => 'Users',
   ),
 );

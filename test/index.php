@@ -29,30 +29,29 @@ require('../../../index.php');
 /** @var modUser $user */
 /** @var socUser $socuser */
 /** @var modObject $obj */
-$option = $modx->getOption('site_name');
-$response['$option'] = $option;
-$response['MODX_CORE_PATH'] = MODX_CORE_PATH;
+//$option = $modx->getOption('site_name');
+//$response['$option'] = $option;
+//$response['MODX_CORE_PATH'] = MODX_CORE_PATH;
 
-//print_r($response);
-//exit(0);
 $pkg='socialsbs';
 $class='SocialsbsUsers';
-if (!$service = $modx->getService($pkg, $class, MODX_CORE_PATH.'components/socialsbs/model/socialsbs/', array())) {
-//if (!$service = $modx->getService('SocialSBS')) {
-    die("Could not load $class class!");
-}
-else{
-    print "Class $class loaded!\n";
-    //var_dump($service);
-}
+$path = MODX_CORE_PATH.'components/socialsbs/model/socialsbs/';
+$prefix='modx_';
+
+$addpkg = $modx->addPackage($pkg, $path, $prefix);
+var_dump($addpkg);
+
+//if (!$service = $modx->getService($pkg, $class, $path, array())) {
+////if (!$service = $modx->getService('SocialSBS')) {
+//    die("Could not load $class class!");
+//}
+//else{
+//    print "Class $class loaded!\n";
+//    //var_dump($service);
+//}
 
 // Создаём объект
-try {
-    $obj = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
-}
-catch (Exception $e) {
-    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
-}
+$obj = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
 
 //$res = $socuser->save();
 var_dump($obj);
