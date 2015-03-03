@@ -48,6 +48,7 @@ $response['id'] = $socuser->get('id');
 $response['company'] = $socuser->get('company');
 
 $socuser->set('username', 'tester');
+$response['username'] = $socuser->get('username');
 
 //$res = $socuser->save();
 //$response['user id'] = $socuser->get('id');
