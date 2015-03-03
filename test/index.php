@@ -27,11 +27,11 @@ require('../../../index.php');
 /** @var modX $modx */
 /** @var modResource $resource */
 /** @var modUser $user */
-/** @var SocialsbsUsers $socuser */
+/** @var SocialsbsUser $socuser */
 /** @var modObject $obj */
 
 $pkg='socialsbs';
-$class='SocialsbsUsers';
+$class='SocialsbsUser';
 $path = MODX_CORE_PATH.'components/socialsbs/model/';
 $prefix='modx_';
 
