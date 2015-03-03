@@ -11,7 +11,7 @@ if ($object->xpdo) {
 
 			$manager = $modx->getManager();
 			$objects = array(
-				'SocialSBSItem',
+				'SocialsbsUser',
 			);
 			foreach ($objects as $tmp) {
 				$manager->createObjectContainer($tmp);
