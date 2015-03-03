@@ -44,10 +44,14 @@ $response['resource create'] = false;
 $socuser = $modx->newObject($class, array('company' => 'Synergy', 'jobtitle' => 'web-programmer'));
 if($socuser) $response['resource create'] = true;
 
+$response['id'] = $socuser->get('id');
+$response['company'] = $socuser->get('company');
 
-$res = $socuser->save();
-$response['user id'] = $socuser->get('id');
+$socuser->set('username', 'tester');
 
+//$res = $socuser->save();
+//$response['user id'] = $socuser->get('id');
+//
 
 print "Response:\n";
 print_r($response);
